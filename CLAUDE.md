@@ -31,3 +31,4 @@
 - Cấu trúc ưu tiên: yyyy-mm-dd-loai-chu-de.md
 - Phiên bản dùng v1, v2, v3.
 - Không dùng final, new hoặc latest.
+- Phạm vi áp dụng: cấu trúc yyyy-mm-dd-loai-chu-de.md chỉ dành cho tài liệu làm việc phát sinh (kịch bản, ngân hàng tiêu đề, báo cáo). Không áp dụng cho các tệp cấu trúc cố định của Skill như CLAUDE.md, SKILL.md, README.md và các tệp trong references, assets, examples, vì chúng cần tên ổn định để duy trì liên kết.

@@ -127,3 +127,5 @@ Thiếu đến mức thay đổi đáng kể kết quả: dừng đúng điểm 
 ### 12. Bàn giao
 
 Khi hoàn thành, trình bày theo thứ tự: kết quả chính (Khối 1 và Khối 2); dữ kiện quan trọng đã dùng (chế độ, số cảnh, vai trò, payoff); kết luận QC; đề xuất hành động tiếp theo (Short đi kèm, lịch xuất bản); hạn chế hoặc dữ liệu còn thiếu; nguồn tham khảo nếu có tra cứu ngoài; sản phẩm ở trạng thái dán dùng ngay.
+
+Trình bày theo cấu trúc trả lời sáu mục trong CLAUDE.md. Nội dung bàn giao trên nằm trong hai mục "Đã thực hiện" (kết quả chính, dữ kiện đã dùng, kết luận QC, hạn chế, nguồn tham khảo, sản phẩm) và "Đề xuất bước tiếp theo" (đề xuất hành động).
