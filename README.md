@@ -36,6 +36,12 @@ impossible-builds-video-director/
     └── long-form-example.md      video dài đủ 60 cảnh và Khối 2
 ```
 
+## Bản mẫu dùng chung
+
+Thư mục `templates/` chứa các bản mẫu không thuộc riêng skill nào:
+
+- `templates/khung-cau-lenh-cong-viec-chuyen-sau.md`: khung 12 mục để giao một nhiệm vụ chuyên sâu cho Claude (vai trò, mục tiêu, bối cảnh, nguồn, công việc, xử lý dữ liệu, tiêu chuẩn, đầu ra, QC, phê duyệt, thiếu thông tin, bàn giao). Mục "Quy trình vận hành bắt buộc" trong SKILL.md là khung này đã điền sẵn cho vai trò đạo diễn video.
+
 ## Cách dùng
 
 Cài skill vào Claude (Claude Code, Claude.ai hoặc Cowork) rồi dán tiêu đề, ví dụ:
