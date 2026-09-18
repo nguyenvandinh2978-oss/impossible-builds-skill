@@ -33,12 +33,13 @@ Sáu chỉ tiêu, giữ nguyên tên và thứ tự:
 | Dòng sai lệch | Số dòng, ghi số theo sổ, nêu số đúng theo phép tính ở cột ghi chú. |
 | Dòng thiếu hoàn toàn doanh thu | Số dòng. Không có tiền để cộng. |
 | **Tổng thu ghi trong sổ** | Tổng ba nhóm có tiền ở trên. Phải cân, nếu không cân là sót dòng. |
+| *Trong đó: dòng ngoài kỳ* | Chỉ tiêu phụ, chỉ thêm khi có lỗi loại 5b. Số dòng và số tiền. |
 
-Dưới bảng, nếu có dòng sai lệch, thêm một câu nêu tổng thu phương án hai và ghi rõ **chưa được xác nhận**.
+Dưới bảng, nếu có dòng sai lệch, thêm một câu nêu tổng thu phương án hai và ghi rõ **chưa được xác nhận**. Nếu có dòng ngoài kỳ, thêm một câu nêu tổng thu của riêng kỳ khi loại dòng đó ra, cũng ghi rõ **chưa được xác nhận**.
 
 ## Danh sách việc cần hỏi lại
 
-Đánh số, mỗi dòng một câu hỏi đóng, trả lời được bằng một con số hoặc một chữ có/không. Nêu rõ ngày và mặt hàng để người ghi sổ tra lại được. Xếp theo thứ tự: lỗi loại 1, loại 2, loại 3, rồi loại 4.
+Đánh số, mỗi dòng một câu hỏi đóng, trả lời được bằng một con số hoặc một chữ có/không. Nêu rõ ngày và mặt hàng để người ghi sổ tra lại được. Xếp theo thứ tự: lỗi loại 1, loại 2, loại 3, loại 4, rồi loại 5.
 
 ## Quy tắc đặt tên tệp
 

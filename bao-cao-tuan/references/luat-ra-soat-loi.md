@@ -1,6 +1,6 @@
-# Luật rà soát lỗi — bốn loại bất thường
+# Luật rà soát lỗi — năm loại bất thường
 
-Chạy đủ bốn loại trên toàn bảng, theo thứ tự. Một dòng có thể dính nhiều loại; ghi hết, không chọn một.
+Chạy đủ năm loại trên toàn bảng, theo thứ tự. Một dòng có thể dính nhiều loại; ghi hết, không chọn một.
 
 Chỉ dùng hai nhãn in hoa trong cột Ghi chú: **THIẾU DỮ LIỆU** và **SAI LỆCH**. Nhãn đặt đầu ô Ghi chú, theo sau là dấu hai chấm và một câu nói rõ thiếu gì hoặc lệch bao nhiêu.
 
@@ -54,6 +54,29 @@ Cách xử lý:
 - Nếu khuyết đồng loạt ở mọi dòng (như thiếu năm), **không** lặp nhãn 18 lần. Nêu một lần ở phần Lưu ý chung ngay trên bảng, dùng chữ THIẾU DỮ LIỆU ở đó.
 - Mọi điểm loại 4 đều phải xuất hiện trong danh sách việc cần hỏi lại.
 
+## Loại 5 — Ngày không hợp lệ hoặc ngoài kỳ
+
+Ngày của dòng không dùng được như sổ ghi. Soi ba dạng:
+
+**5a. Ngày không tồn tại.** `31/09`, `30/02`, `32/08`, tháng 13. Sổ chắc chắn ghi sai, nhưng ngày đúng thì chưa biết.
+- Giữ nguyên ngày sai trong cột Ngày, **không tự sửa** thành 30/09 hay 01/10.
+- Nhãn **THIẾU DỮ LIỆU** kèm câu: `THIẾU DỮ LIỆU: ngày <dd/mm> không tồn tại, chưa xác định được ngày đúng.`
+- Số tiền của dòng vẫn cộng vào tổng bình thường, vì tiền không sai, chỉ ngày sai.
+
+**5b. Ngày nằm ngoài kỳ báo cáo.** Dòng ghi ngày trước hoặc sau khoảng thời gian của kỳ đang dọn.
+- Bản thân số liệu không sai, nên **không gắn nhãn in hoa** vào các ô số.
+- Ghi chú trong dòng: `Ngày này nằm ngoài kỳ <từ ngày>–<đến ngày> – cần xác nhận thuộc kỳ báo cáo nào.`
+- Trong bảng tổng hợp thêm một chỉ tiêu phụ **"Trong đó: dòng ngoài kỳ"** (số dòng và số tiền), và nêu thêm một câu tổng thu của riêng kỳ nếu loại dòng đó ra, ghi rõ **chưa được xác nhận**.
+- Không tự ý bỏ dòng ra khỏi bảng. Bỏ dòng là làm mất dữ liệu của sổ gốc.
+
+**5c. Ngày phi lý so với thời điểm lập báo cáo.** Ngày ở tương lai, hoặc lùi quá xa so với các dòng còn lại (ví dụ cả sổ là tháng 9 mà một dòng ghi tháng 3).
+- Giữ nguyên, ghi chú nêu rõ điểm bất thường, đưa vào danh sách hỏi lại.
+- Nếu nghi sổ ghi nhầm tháng, **không sửa**, chỉ nêu khả năng trong ghi chú.
+
+**Bẫy thường gặp:** sổ viết tay hay đảo ngày và tháng (`05/09` và `09/05`). Nếu cả sổ dùng dd/mm mà một dòng có phần đầu lớn hơn 12, đó là dấu hiệu dòng đó bị đảo. Vẫn **không tự sửa**, chỉ nêu nghi vấn và hỏi lại.
+
+*Ví dụ:* `13/09 - 2 bánh mì ốp la - đg 20k - thu 40.000đ` trong kỳ 06/09–12/09 → số liệu khớp, giữ nguyên, ghi chú `Ngày này nằm ngoài kỳ 06/09–12/09 – cần xác nhận thuộc kỳ báo cáo nào.`, thêm chỉ tiêu "Trong đó: dòng ngoài kỳ — 1 dòng, 40.000đ".
+
 ## Quy tắc chốt
 
-Sau khi chạy đủ bốn loại, kiểm tra chéo: mỗi nhãn trong bảng phải có đúng một mục tương ứng trong danh sách việc cần hỏi lại, và ngược lại. Lệch nhau nghĩa là còn sót.
+Sau khi chạy đủ năm loại, kiểm tra chéo: mỗi nhãn trong bảng phải có đúng một mục tương ứng trong danh sách việc cần hỏi lại, và ngược lại. Lệch nhau nghĩa là còn sót.

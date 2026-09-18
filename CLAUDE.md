@@ -25,7 +25,7 @@
 8. Prompt sản xuất video viết bằng tiếng Anh Mỹ; phần giải thích viết bằng tiếng Việt.
 9. Quy trình chuyên môn của Impossible Builds Video Director phải tuân theo SKILL.md.
 10. Trước khi tạo Pull Request hoặc thực hiện hành động bên ngoài, phải xin xác nhận.
-11. Khi Giám đốc nói "Chạy Báo cáo Tuần" và gửi dữ liệu thô, chạy skill `bao-cao-tuan`: dọn thành bảng 6 cột (Ngày, Sản phẩm, Số lượng, Đơn giá, Doanh thu, Ghi chú) và rà đủ bốn loại lỗi theo `bao-cao-tuan/references/luat-ra-soat-loi.md`. Không tự điền, không suy đoán số liệu.
+11. Khi Giám đốc nói "Chạy Báo cáo Tuần" và gửi dữ liệu thô, chạy skill `bao-cao-tuan`: dọn thành bảng 6 cột (Ngày, Sản phẩm, Số lượng, Đơn giá, Doanh thu, Ghi chú) và rà đủ năm loại lỗi theo `bao-cao-tuan/references/luat-ra-soat-loi.md`. Không tự điền, không suy đoán số liệu.
 
 ## Quy tắc đặt tên tệp
 - Dùng chữ thường, không dấu, phân cách bằng dấu gạch ngang.

@@ -14,12 +14,15 @@
 - [ ] Số lượng có đơn vị. Cột Sản phẩm không còn lẫn mô tả khách hàng.
 - [ ] Ngày giữ đúng dạng sổ gốc, không tự thêm năm.
 
-## Bốn loại lỗi
+## Năm loại lỗi
 - [ ] Loại 1: mọi ô khuyết đều để trống và có nhãn **THIẾU DỮ LIỆU** kèm câu giải thích.
 - [ ] Loại 2: đã chạy script đối soát `SL × ĐG = Doanh thu` cho mọi dòng đủ ba trường. Không nhẩm tay.
 - [ ] Loại 2: dòng lệch giữ nguyên ba số gốc, nhãn **SAI LỆCH** có nêu số đúng và mức chênh.
 - [ ] Loại 3: đơn gộp giữ một dòng, Đơn giá trống, Doanh thu ghi đủ tổng thu của đơn.
 - [ ] Loại 4: đã soi tên hàng lệch nhau, đơn vị lẫn lộn, trường khuyết đồng loạt, cùng hàng hai giá.
+- [ ] Loại 5: đã soi ngày không tồn tại, ngày ngoài kỳ, ngày phi lý, ngày bị đảo dd/mm.
+- [ ] Loại 5: không tự sửa ngày sai, không bỏ dòng ngoài kỳ ra khỏi bảng.
+- [ ] Có dòng ngoài kỳ thì bảng tổng hợp có chỉ tiêu phụ "Trong đó: dòng ngoài kỳ".
 - [ ] Trường khuyết đồng loạt nêu một lần ở Lưu ý chung, không lặp nhãn ở từng dòng.
 
 ## Tổng hợp

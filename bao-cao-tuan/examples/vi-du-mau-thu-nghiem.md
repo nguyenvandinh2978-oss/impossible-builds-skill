@@ -32,7 +32,7 @@ Lưu ý chung: sổ **không ghi năm** cho bất kỳ dòng nào — `THIẾU D
 | 12/09 | Bánh mì xá xíu | 2 ổ | 28.000đ | 56.000đ | Khách qua lấy. Khớp (2 × 28.000). |
 | 12/09 | Cà phê đen đá | 3 ly | 18.000đ | 54.000đ | Khớp (3 × 18.000). |
 | 12/09 | Xôi mặn đặc biệt | 1 hộp | 45.000đ | | **THIẾU DỮ LIỆU**: sổ không ghi số tiền thu. Không tự điền dù có đủ số lượng và đơn giá. |
-| 13/09 | Bánh mì ốp la | 2 ổ | 20.000đ | 40.000đ | Khách vãng lai. Khớp (2 × 20.000). Ngày này nằm **ngoài** tuần 06/09–12/09 – cần xác nhận thuộc kỳ báo cáo nào. |
+| 13/09 | Bánh mì ốp la | 2 ổ | 20.000đ | 40.000đ | Khách vãng lai. Khớp (2 × 20.000). **Lỗi loại 5b**: ngày này nằm **ngoài** kỳ 06/09–12/09 – cần xác nhận thuộc kỳ báo cáo nào. |
 
 ## Tổng hợp
 
@@ -43,6 +43,7 @@ Lưu ý chung: sổ **không ghi năm** cho bất kỳ dòng nào — `THIẾU D
 | Dòng có thu nhưng không kiểm chứng được | 3 dòng – **340.000đ** | 07/09 xôi xá xíu 76.000đ; 08/09 bánh mì gà nướng xé 90.000đ; 09/09 đơn gộp 174.000đ. |
 | Dòng sai lệch | 1 dòng – **140.000đ** theo sổ | 09/09 bánh bao chay; nếu đúng đơn giá thì phải là 150.000đ. |
 | Dòng thiếu hoàn toàn doanh thu | 1 dòng | 12/09 xôi mặn đặc biệt. |
+| *Trong đó: dòng ngoài kỳ* | *1 dòng – 40.000đ* | *13/09 bánh mì ốp la, lỗi loại 5b.* |
 | **Tổng thu ghi trong sổ** | **1.630.000đ** | Chưa xử lý phần sai lệch 10.000đ và chưa cộng dòng 12/09. |
 
 Nếu dòng 09/09 được xác nhận là ghi thiếu tiền thu, tổng thu sẽ là **1.640.000đ** (chưa kể dòng 12/09 còn thiếu). Con số này **chưa được xác nhận**.
@@ -69,6 +70,7 @@ Nếu dòng 13/09 không thuộc kỳ này, tổng thu của tuần 06–12/09 g
 | 1 – Khuyết trường | 3 | 3 | Đạt |
 | 2 – Mâu thuẫn số học | 1 | 1 | Đạt |
 | 3 – Đơn gộp không tách được | 1 | 1 | Đạt |
-| 4 – Không nhất quán | 5 dạng | 5 dạng | Đạt |
+| 4 – Không nhất quán | 4 dạng | 4 dạng | Đạt |
+| 5 – Ngày ngoài kỳ | 1 | 1 | Đạt (bổ sung sau lần chạy này) |
 
 Cân đối: 1.150.000 + 340.000 + 140.000 = 1.630.000đ, khớp tổng sổ. Số dòng bảng 19 = số dòng sổ gốc 19.

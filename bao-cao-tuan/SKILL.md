@@ -1,6 +1,6 @@
 ---
 name: bao-cao-tuan
-description: Quy trình BÁO CÁO TUẦN — dọn sổ sách, nhật ký bán hàng, bảng kê hoặc dữ liệu thô lộn xộn thành bảng dữ liệu sạch 6 cột (Ngày, Sản phẩm, Số lượng, Đơn giá, Doanh thu, Ghi chú) và tự động phát hiện bốn loại lỗi bất thường. Dùng skill này bất cứ khi nào người dùng nói "Chạy Báo cáo Tuần", "Báo cáo tuần", "dọn sổ sách", "dọn nhật ký bán hàng", "làm sạch bảng kê", hoặc dán một đoạn ghi chép bán hàng thô và yêu cầu chuẩn hóa thành bảng. Luật cốt lõi: không tự điền, không suy đoán số liệu; chỗ thiếu ghi THIẾU DỮ LIỆU, chỗ mâu thuẫn ghi SAI LỆCH.
+description: Quy trình BÁO CÁO TUẦN — dọn sổ sách, nhật ký bán hàng, bảng kê hoặc dữ liệu thô lộn xộn thành bảng dữ liệu sạch 6 cột (Ngày, Sản phẩm, Số lượng, Đơn giá, Doanh thu, Ghi chú) và tự động phát hiện năm loại lỗi bất thường. Dùng skill này bất cứ khi nào người dùng nói "Chạy Báo cáo Tuần", "Báo cáo tuần", "dọn sổ sách", "dọn nhật ký bán hàng", "làm sạch bảng kê", hoặc dán một đoạn ghi chép bán hàng thô và yêu cầu chuẩn hóa thành bảng. Luật cốt lõi: không tự điền, không suy đoán số liệu; chỗ thiếu ghi THIẾU DỮ LIỆU, chỗ mâu thuẫn ghi SAI LỆCH.
 ---
 
 # Báo cáo Tuần
@@ -18,7 +18,7 @@ Sổ viết tay luôn khuyết trường và luôn có dòng tính nhầm. Nếu
 | Tệp | Khi nào đọc |
 |---|---|
 | `references/dinh-dang-bang.md` | Luôn đọc. Định nghĩa 6 cột, bảng tổng hợp, danh sách câu hỏi, quy tắc đặt tên tệp. |
-| `references/luat-ra-soat-loi.md` | Luôn đọc. Bốn loại lỗi bất thường, nhãn tương ứng và cách xử lý từng loại. |
+| `references/luat-ra-soat-loi.md` | Luôn đọc. Năm loại lỗi bất thường, nhãn tương ứng và cách xử lý từng loại. |
 | `assets/bang-mau.md` | Khung điền sẵn cho tệp kết quả. |
 | `assets/qc-checklist.md` | Chạy trước khi xuất kết quả. |
 | `examples/vi-du-tiem-co-ba.md` | Ví dụ hoàn chỉnh: nhật ký Tiệm Cô Ba tuần 28/08–05/09. |
@@ -59,7 +59,7 @@ Sáu bước, không bỏ bước đối soát để làm nhanh.
 
 **Bước 3. Đối soát bằng máy, không nhẩm.** Viết một script ngắn kiểm tra `Số lượng × Đơn giá = Doanh thu` cho mọi dòng đủ ba trường, in ra dòng nào lệch và lệch bao nhiêu. Nhẩm tay là cách nhanh nhất bỏ sót dòng sai.
 
-**Bước 4. Gắn nhãn lỗi.** Chạy đủ bốn loại lỗi trong `references/luat-ra-soat-loi.md` trên toàn bảng. Mỗi dòng dính lỗi phải có nhãn ở cột Ghi chú kèm một câu nói rõ thiếu gì hoặc lệch bao nhiêu.
+**Bước 4. Gắn nhãn lỗi.** Chạy đủ năm loại lỗi trong `references/luat-ra-soat-loi.md` trên toàn bảng. Mỗi dòng dính lỗi phải có nhãn ở cột Ghi chú kèm một câu nói rõ thiếu gì hoặc lệch bao nhiêu.
 
 **Bước 5. Lập bảng tổng hợp và danh sách hỏi lại.** Theo đúng khung trong `references/dinh-dang-bang.md`. Tổng thu ghi trong sổ phải bằng tổng ba nhóm: dòng kiểm chứng đúng + dòng có thu nhưng không kiểm chứng được + dòng sai lệch. Nếu không bằng, có dòng bị bỏ sót, quay lại Bước 1.
 

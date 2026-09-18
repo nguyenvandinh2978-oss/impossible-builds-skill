@@ -58,7 +58,7 @@ Kích hoạt bằng câu **"Chạy Báo cáo Tuần"** kèm dữ liệu thô.
 - **Danh sách việc cần hỏi lại**, mỗi mục một câu hỏi đóng.
 - Hai tệp `yyyy-mm-dd-bao-cao-tuan-<chu-de>-v1.md` và `.csv`.
 
-Bốn loại lỗi được rà tự động:
+Năm loại lỗi được rà tự động:
 
 | Loại | Nội dung | Nhãn |
 |---|---|---|
@@ -66,6 +66,7 @@ Bốn loại lỗi được rà tự động:
 | 2 | Mâu thuẫn số học: Số lượng × Đơn giá ≠ Doanh thu | `SAI LỆCH` |
 | 3 | Đơn gộp nhiều mặt hàng, một khoản thu, không tách được | `THIẾU DỮ LIỆU` |
 | 4 | Không nhất quán: tên hàng, đơn vị, thiếu năm, cùng hàng hai giá | ghi chú trong dòng |
+| 5 | Ngày không hợp lệ, ngoài kỳ báo cáo, hoặc bị đảo dd/mm | `THIẾU DỮ LIỆU` hoặc ghi chú |
 
 Luật cốt lõi: **không tự điền, không suy đoán, không sửa số gốc**. Ô thiếu để trống kèm nhãn; dòng lệch giữ nguyên số sổ và chờ xác nhận.
 
@@ -74,7 +75,7 @@ bao-cao-tuan/
 ├── SKILL.md                      quy trình 10 điểm
 ├── references/
 │   ├── dinh-dang-bang.md         6 cột, bảng tổng hợp, quy tắc đặt tên tệp
-│   └── luat-ra-soat-loi.md       bốn loại lỗi và cách xử lý từng loại
+│   └── luat-ra-soat-loi.md       năm loại lỗi và cách xử lý từng loại
 ├── assets/
 │   ├── bang-mau.md               khung điền sẵn
 │   └── qc-checklist.md           checklist tự kiểm tra
