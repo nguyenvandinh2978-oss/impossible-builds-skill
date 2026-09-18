@@ -58,11 +58,11 @@ Kỳ báo cáo: **28/08/2026 (thứ Sáu) – 05/09/2026 (thứ Bảy), 9 ngày.
 
 ## Doanh thu theo nhóm hàng
 
-Nhóm gộp theo danh mục đã thống nhất. Chỉ là sắp xếp lại 19 dòng trên, không thêm số liệu mới.
+Nhóm gộp theo danh mục đã thống nhất. Chỉ là sắp xếp lại 19 dòng trên, không thêm số liệu mới. Đã cộng bằng máy, tổng bốn nhóm khớp 1.542.000đ.
 
 | Nhóm | Số dòng | Doanh thu | Tỷ trọng |
 |---|---|---|---|
-| Bánh mì | 8 | 747.000đ | 48,4% |
+| Bánh mì | 8 | 717.000đ | 46,5% |
 | Xôi | 6 | 441.000đ | 28,6% |
 | Bánh bao | 3 | 310.000đ | 20,1% |
 | Cà phê | 2 | 74.000đ | 4,8% |
