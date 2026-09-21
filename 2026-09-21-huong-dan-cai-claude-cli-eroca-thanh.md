@@ -14,6 +14,18 @@ Từng bước một. Không cần nhớ lệnh. Mỗi bước chỉ làm một 
 
 ---
 
+## Cách nhanh (tuỳ chọn) — dán một khối duy nhất
+
+Nếu Eroca Thanh muốn làm gọn trong một lần: mở **PowerShell 64-bit** (Bước 1), rồi mở tệp `2026-09-21-script-cai-claude-code-windows.ps1` trong cùng thư mục này, sao chép **toàn bộ nội dung**, dán vào PowerShell và nhấn Enter.
+
+Khối đó tự làm các Bước 2, 3, 4, 5: kiểm tra 64-bit → chạy bộ cài chính thức → thêm PATH → chạy `claude --version` và `claude doctor`. Nó chỉ thêm, không xoá gì; nếu máy đã cài sẵn thì nó bỏ qua bước cài.
+
+Việc đăng nhập ở **Bước 6 vẫn phải làm bằng tay**, vì cần mở trình duyệt và bấm xác nhận.
+
+Nếu khối tự động dừng giữa chừng hoặc hiện dòng đỏ: quay về làm tuần tự từ Bước 1 dưới đây — bản tuần tự cho biết chính xác đang hỏng ở đâu.
+
+---
+
 ## Bước 1. Mở PowerShell đúng loại
 
 Mở menu Start, gõ `po`, chọn **Windows PowerShell** hoặc **PowerShell 7** trong mục "Best match".
@@ -195,7 +207,7 @@ Kết quả đúng: `claude --version` hiện số phiên bản. Sau đó đóng
 
 ## Phụ lục — nếu Eroca Thanh dùng macOS, Linux hoặc WSL
 
-Bài này viết cho Windows. Nếu máy là macOS (13.0 trở lên), Linux (Ubuntu 20.04+, Debian 10+) hoặc WSL, thay Bước 1–4 bằng một lệnh trong Terminal:
+Máy của Eroca Thanh đã xác nhận là **Windows**, nên phần trên là bản chính thức cần dùng. Phụ lục này chỉ để tham khảo khi cần cài trên máy khác: nếu máy là macOS (13.0 trở lên), Linux (Ubuntu 20.04+, Debian 10+) hoặc WSL, thay Bước 1–4 bằng một lệnh trong Terminal:
 
 ```bash
 curl -fsSL https://claude.ai/install.sh | bash
