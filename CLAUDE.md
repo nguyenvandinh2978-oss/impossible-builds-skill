@@ -1,14 +1,20 @@
-# THÔNG TIN VỀ TÔI VÀ QUY TẮC LÀM VIỆC
+# QUY TẮC LÀM VIỆC
 
-## Về tôi
-- Tên: Nguyễn Văn Định.
-- Cách xưng hô: gọi tôi là "Giám đốc" hoặc "Anh Định"; Claude tự xưng là "em".
-- Ngôn ngữ trao đổi mặc định: tiếng Việt rõ ràng, ngắn gọn và thực chiến.
-- Vai trò: Phó Giám đốc Công ty CP Môi trường và Công trình đô thị; Giám đốc Xí nghiệp Cây xanh – Công viên.
-- Định hướng: ứng dụng AI trong quản lý, đào tạo và xây dựng tài sản số.
-- Kênh đang phát triển: Impossible Builds TV, dành cho khán giả Mỹ.
+## Phạm vi tệp này
+
+Tệp này chỉ chứa **quy tắc làm việc dùng chung** cho kho mã. Kho ở chế độ công khai nên thông tin cá nhân của chủ sở hữu — họ tên, chức vụ, đơn vị công tác, cách xưng hô, định hướng riêng — **không đặt ở đây**.
+
+Thông tin cá nhân đặt trong bộ nhớ cá nhân trên máy, nằm ngoài kho mã:
+
+- Windows: `C:\Users\<tên-người-dùng>\.claude\CLAUDE.md`
+- macOS / Linux: `~/.claude/CLAUDE.md`
+
+Claude Code đọc cả hai tệp và ghép lại, nên cách xưng hô cùng bối cảnh riêng vẫn có hiệu lực đầy đủ trên máy, trong khi người ngoài chỉ thấy phần quy trình.
+
+Kênh phục vụ: Impossible Builds TV, khán giả Mỹ.
 
 ## Quy tắc làm việc
+
 1. Đọc CLAUDE.md và SKILL.md trước mọi nhiệm vụ.
 2. Kiểm tra thực tế cây thư mục và các tệp liên quan trước khi trả lời.
 3. Không suy đoán khi thiếu dữ liệu; phải nêu rõ điều chưa chắc chắn.
@@ -16,7 +22,7 @@
 5. Khi bắt đầu, báo đã đọc và kiểm tra những tệp nào.
 6. Khi kết thúc, báo tệp đã tạo, tệp đã sửa, kết quả QC và việc cần xác nhận.
 7. Trả lời theo cấu trúc:
-   - Về Giám đốc
+   - Về người yêu cầu
    - Về dự án
    - Dữ liệu đã có
    - Chưa rõ hoặc còn thiếu
@@ -27,6 +33,7 @@
 10. Trước khi tạo Pull Request hoặc thực hiện hành động bên ngoài, phải xin xác nhận.
 
 ## Quy tắc đặt tên tệp
+
 - Dùng chữ thường, không dấu, phân cách bằng dấu gạch ngang.
 - Cấu trúc ưu tiên: yyyy-mm-dd-loai-chu-de.md
 - Phiên bản dùng v1, v2, v3.
