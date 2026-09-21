@@ -134,31 +134,47 @@ claude doctor
 
 ## Bước 6. Khởi động và đăng nhập lần đầu
 
-**1. Khởi động Claude Code:** đi tới thư mục dự án rồi chạy:
+**1. Khởi động Claude Code:** đi tới thư mục dự án rồi chạy `claude`. Đừng chạy ở `C:\WINDOWS\system32` — đó là thư mục hệ thống. Nếu chưa có thư mục làm việc, tạo một cái:
 
 ```powershell
+cd $env:USERPROFILE\Documents
+New-Item -ItemType Directory -Path "claude-projects" -Force | Out-Null
+cd claude-projects
 claude
 ```
 
-**2. Chọn giao diện:** lần đầu chạy, Claude Code có thể hỏi chọn Dark mode, Light mode hoặc kiểu màu khác. Đây chỉ là màu giao diện. Dùng phím `↑` / `↓` chọn kiểu dễ nhìn — khuyến nghị **Dark mode** — rồi nhấn `Enter`. Đổi lại sau trong `/config`.
+**2. Màn hình "Quick safety check" — chỗ hay vấp nhất:** Claude Code hỏi có tin thư mục này không, vì nó sẽ được quyền đọc, sửa và chạy tệp trong đó. Hai dòng lựa chọn:
 
-**3. Dừng lại ở màn hình "Select login method":** chưa nhấn `Enter` vội.
+```
+ > No, exit
+   Yes, I trust this folder
+```
 
-**4. Đăng nhập web trước:** mở trình duyệt (khuyến nghị Google Chrome; Microsoft Edge cũng dùng được, không dùng Internet Explorer cũ), vào https://claude.ai, đăng nhập đúng tài khoản có gói Pro, Max, Team hoặc Enterprise. Kiểm tra góc trái dưới đã hiện **tên tài khoản · tên gói**. Giữ nguyên trình duyệt này rồi quay lại PowerShell.
+Con trỏ `>` mặc định nằm ở **"No, exit"**. Nhấn `Enter` ngay lúc này là **thoát**, không phải đồng ý.
 
-**5. Chọn đúng phương thức đăng nhập:** quay lại màn hình "Select login method", giữ hoặc dùng `↑` / `↓` chọn mục **1. Claude account with subscription**, rồi nhấn `Enter`.
+Cách làm đúng: nhấn **một lần** phím mũi tên `↓` để dấu `>` nhảy xuống dòng **"Yes, I trust this folder"**, nhìn thấy dấu `>` đã ở dòng dưới rồi mới nhấn `Enter`. Không nhấn `Esc` — phím đó là huỷ.
+
+*(Dùng cụm phím số bên phải thì phải tắt `Num Lock` phím `2` mới có tác dụng như mũi tên xuống.)*
+
+**3. Chọn giao diện:** lần đầu chạy, Claude Code có thể hỏi chọn Dark mode, Light mode hoặc kiểu màu khác. Đây chỉ là màu giao diện. Dùng phím `↑` / `↓` chọn kiểu dễ nhìn — khuyến nghị **Dark mode** — rồi nhấn `Enter`. Đổi lại sau trong `/config`.
+
+**4. Dừng lại ở màn hình "Select login method":** chưa nhấn `Enter` vội.
+
+**5. Đăng nhập web trước:** mở trình duyệt (khuyến nghị Google Chrome; Microsoft Edge cũng dùng được, không dùng Internet Explorer cũ), vào https://claude.ai, đăng nhập đúng tài khoản có gói Pro, Max, Team hoặc Enterprise. Kiểm tra góc trái dưới đã hiện **tên tài khoản · tên gói**. Giữ nguyên trình duyệt này rồi quay lại PowerShell.
+
+**6. Chọn đúng phương thức đăng nhập:** quay lại màn hình "Select login method", giữ hoặc dùng `↑` / `↓` chọn mục **1. Claude account with subscription**, rồi nhấn `Enter`.
 
 - Không chọn mục 2 nếu muốn dùng hạn mức của gói thuê bao — mục 2 tính phí theo API qua Claude Console.
 - Mục 3 chỉ dành cho tổ chức đã được hướng dẫn dùng nền tảng đám mây riêng (Bedrock, Vertex, Foundry).
 
-**6. Hoàn tất xác thực trong trình duyệt:** Claude Code mở trang xác thực; làm theo hướng dẫn và cho phép kết nối với Claude Code.
+**7. Hoàn tất xác thực trong trình duyệt:** Claude Code mở trang xác thực; làm theo hướng dẫn và cho phép kết nối với Claude Code.
 
 - Nếu trình duyệt không tự mở: nhấn `c` trong PowerShell để sao chép đường dẫn đăng nhập, dán vào Chrome.
 - Nếu trình duyệt hiện một mã thay vì tự quay lại: sao chép mã đó, dán vào dòng `Paste code here if prompted` trong PowerShell.
 
-PowerShell hiện `Login successful` là đã xong.
+PowerShell hiện `Login successful` là đã xong. Nếu trình duyệt đã đăng nhập sẵn, Claude Code có thể bỏ qua luôn màn hình này.
 
-**7. Đọc ghi chú an toàn:** Claude Code nhắc rằng Claude có thể mắc lỗi và chỉ nên dùng với mã nguồn mình tin cậy. Đọc xong, nhấn `Enter` tại dòng `Press Enter to continue…` để vào Claude Code.
+**8. Đọc ghi chú an toàn:** Claude Code nhắc rằng Claude có thể mắc lỗi và chỉ nên dùng với mã nguồn mình tin cậy. Đọc xong, nhấn `Enter` tại dòng `Press Enter to continue…` để vào Claude Code.
 
 ---
 
@@ -224,4 +240,18 @@ Sau đó làm tiếp Bước 5 và Bước 6 y như trên.
 - Claude Code Setup: https://code.claude.com/docs/en/setup
 - Troubleshoot installation: https://code.claude.com/docs/en/troubleshoot-install
 
-*Tài liệu kiểm tra ngày 21/09/2026.*
+## Dấu hiệu đã xong
+
+Màn hình Claude Code hiện khối thông tin kiểu:
+
+```
+Claude Code v2.1.278
+Opus 5 (1M context) · Claude Max
+~\Documents\claude-projects
+```
+
+Dòng thứ hai phải có tên gói (Max, Pro, Team hoặc Enterprise) — đó là bằng chứng đã đăng nhập đúng tài khoản. Dưới cùng là ô nhập `>` để gõ yêu cầu.
+
+Vài lệnh cần biết ngay: `/help` xem trợ giúp, `/config` đổi giao diện, `/model` đổi mô hình, `/status` xem trạng thái, `/exit` thoát (hoặc nhấn `Ctrl + C` hai lần).
+
+*Tài liệu kiểm tra ngày 21/09/2026, đã chạy thử thực tế trên Windows và cài thành công phiên bản 2.1.278.*
