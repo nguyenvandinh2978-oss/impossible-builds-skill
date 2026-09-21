@@ -45,3 +45,40 @@ Cài skill vào Claude (Claude Code, Claude.ai hoặc Cowork) rồi dán tiêu �
 - "Cho tôi ngân hàng tiêu đề 3 hub về đập và hầm."
 
 Tài liệu bên trong viết tiếng Việt. Prompt, voice-over và metadata xuất tiếng Anh.
+
+## Skill: Báo cáo Tuần
+
+Thư mục `bao-cao-tuan/` là skill xử lý sổ sách: biến nhật ký bán hàng hoặc bảng kê viết tay lộn xộn thành bảng dữ liệu sạch, kèm danh sách lỗi cần hỏi lại người ghi sổ.
+
+Kích hoạt bằng câu **"Chạy Báo cáo Tuần"** kèm dữ liệu thô.
+
+Đầu ra cố định:
+- **Bảng 6 cột**: Ngày, Sản phẩm, Số lượng, Đơn giá, Doanh thu, Ghi chú.
+- **Bảng tổng hợp 6 chỉ tiêu**, có đối chiếu cân với tổng thu ghi trong sổ.
+- **Danh sách việc cần hỏi lại**, mỗi mục một câu hỏi đóng.
+- Hai tệp `yyyy-mm-dd-bao-cao-tuan-<chu-de>-v1.md` và `.csv`.
+
+Năm loại lỗi được rà tự động:
+
+| Loại | Nội dung | Nhãn |
+|---|---|---|
+| 1 | Khuyết trường bắt buộc (số lượng, đơn giá hoặc doanh thu) | `THIẾU DỮ LIỆU` |
+| 2 | Mâu thuẫn số học: Số lượng × Đơn giá ≠ Doanh thu | `SAI LỆCH` |
+| 3 | Đơn gộp nhiều mặt hàng, một khoản thu, không tách được | `THIẾU DỮ LIỆU` |
+| 4 | Không nhất quán: tên hàng, đơn vị, thiếu năm, cùng hàng hai giá | ghi chú trong dòng |
+| 5 | Ngày không hợp lệ, ngoài kỳ báo cáo, hoặc bị đảo dd/mm | `THIẾU DỮ LIỆU` hoặc ghi chú |
+
+Luật cốt lõi: **không tự điền, không suy đoán, không sửa số gốc**. Ô thiếu để trống kèm nhãn; dòng lệch giữ nguyên số sổ và chờ xác nhận.
+
+```
+bao-cao-tuan/
+├── SKILL.md                      quy trình 10 điểm
+├── references/
+│   ├── dinh-dang-bang.md         6 cột, bảng tổng hợp, quy tắc đặt tên tệp
+│   └── luat-ra-soat-loi.md       năm loại lỗi và cách xử lý từng loại
+├── assets/
+│   ├── bang-mau.md               khung điền sẵn
+│   └── qc-checklist.md           checklist tự kiểm tra
+└── examples/
+    └── vi-du-tiem-co-ba.md       ví dụ hoàn chỉnh tuần 28/08–05/09
+```
