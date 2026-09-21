@@ -2,7 +2,7 @@
 
 ## Phạm vi tệp này
 
-Tệp này chỉ chứa **quy tắc làm việc dùng chung** cho kho mã. Kho ở chế độ công khai nên thông tin cá nhân của chủ sở hữu — họ tên, chức vụ, đơn vị công tác, cách xưng hô, định hướng riêng — **không đặt ở đây**.
+Tệp này chỉ chứa **quy tắc làm việc dùng chung** cho kho mã. Thông tin cá nhân của chủ sở hữu — họ tên, chức vụ, đơn vị công tác, cách xưng hô, định hướng riêng — **không đặt ở đây**.
 
 Thông tin cá nhân đặt trong bộ nhớ cá nhân trên máy, nằm ngoài kho mã:
 
@@ -31,7 +31,7 @@ Kênh phục vụ: Impossible Builds TV, khán giả Mỹ.
 8. Prompt sản xuất video viết bằng tiếng Anh Mỹ; phần giải thích viết bằng tiếng Việt.
 9. Quy trình chuyên môn của Impossible Builds Video Director phải tuân theo SKILL.md.
 10. Trước khi tạo Pull Request hoặc thực hiện hành động bên ngoài, phải xin xác nhận.
-11. Khi Giám đốc nói "Chạy Báo cáo Tuần" và gửi dữ liệu thô, chạy skill `bao-cao-tuan`: dọn thành bảng 6 cột (Ngày, Sản phẩm, Số lượng, Đơn giá, Doanh thu, Ghi chú) và rà đủ năm loại lỗi theo `bao-cao-tuan/references/luat-ra-soat-loi.md`. Không tự điền, không suy đoán số liệu.
+11. Khi người yêu cầu nói "Chạy Báo cáo Tuần" và gửi dữ liệu thô, chạy skill `bao-cao-tuan`: dọn thành bảng 6 cột (Ngày, Sản phẩm, Số lượng, Đơn giá, Doanh thu, Ghi chú) và rà đủ năm loại lỗi theo `.claude/skills/bao-cao-tuan/references/luat-ra-soat-loi.md`. Không tự điền, không suy đoán số liệu.
 
 ## Quy tắc đặt tên tệp
 

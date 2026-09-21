@@ -48,7 +48,7 @@ Tài liệu bên trong viết tiếng Việt. Prompt, voice-over và metadata xu
 
 ## Skill: Báo cáo Tuần
 
-Thư mục `bao-cao-tuan/` là skill xử lý sổ sách: biến nhật ký bán hàng hoặc bảng kê viết tay lộn xộn thành bảng dữ liệu sạch, kèm danh sách lỗi cần hỏi lại người ghi sổ.
+Thư mục `.claude/skills/bao-cao-tuan/` là skill xử lý sổ sách: biến nhật ký bán hàng hoặc bảng kê viết tay lộn xộn thành bảng dữ liệu sạch, kèm danh sách lỗi cần hỏi lại người ghi sổ.
 
 Kích hoạt bằng câu **"Chạy Báo cáo Tuần"** kèm dữ liệu thô.
 
@@ -71,7 +71,7 @@ Năm loại lỗi được rà tự động:
 Luật cốt lõi: **không tự điền, không suy đoán, không sửa số gốc**. Ô thiếu để trống kèm nhãn; dòng lệch giữ nguyên số sổ và chờ xác nhận.
 
 ```
-bao-cao-tuan/
+.claude/skills/bao-cao-tuan/
 ├── SKILL.md                      quy trình 10 điểm
 ├── references/
 │   ├── dinh-dang-bang.md         6 cột, bảng tổng hợp, quy tắc đặt tên tệp
