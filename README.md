@@ -82,3 +82,34 @@ Luật cốt lõi: **không tự điền, không suy đoán, không sửa số g
 └── examples/
     └── vi-du-tiem-co-ba.md       ví dụ hoàn chỉnh tuần 28/08–05/09
 ```
+
+## Bộ khung harness
+
+Năm lớp giữ cho Claude và các tác tử AI khác làm việc an toàn, đúng quy trình trong kho này.
+
+| Thành phần | Tệp | Vai trò |
+|---|---|---|
+| **CLAUDE.md** | `CLAUDE.md` | Luật làm việc chung, tự nạp mỗi phiên: cấu trúc trả lời 6 mục, quy tắc đặt tên tệp, xin xác nhận trước hành động bên ngoài. |
+| **AGENTS.md** | `AGENTS.md` | Luật cho agent phụ và các công cụ AI khác (Codex, Cursor, Copilot...). Trỏ về `CLAUDE.md` và `SKILL.md`, chỉ thêm luật riêng cho tác tử. |
+| **Hook** | `.claude/settings.json`, `.claude/hooks/chan-lenh-nguy-hiem.py` | Chặn cứng bằng mã, chạy trước mọi lệnh Bash và mọi lần ghi tệp. |
+| **Rules** | `.claude/rules/` | Luật theo chủ đề, nạp khi cần: `dat-ten-tep.md`, `prompt-video.md` (chỉ nạp khi làm với skill video, kịch bản, ngân hàng tiêu đề), `git-va-github.md`. |
+| **Skill** | `impossible-builds-video-director/`, `.claude/skills/bao-cao-tuan/` | Quy trình chuyên môn đóng gói, gọi bằng một câu lệnh. |
+
+### Hook chặn lệnh nguy hiểm
+
+- **Chặn hẳn:** `rm -rf`, `git push --force`, push thẳng lên `main`/`master`, `git reset --hard`, `git clean -f`, `git branch -D`, `git checkout -- .`, `find -delete`, tải mã từ Internet rồi chạy luôn (`curl ... | sh`), `mkfs`, `dd`, `shred`, `chmod -R 777`.
+- **Hỏi lại:** xóa, đổi tên hoặc ghi đè `CLAUDE.md`, `AGENTS.md`, `SKILL.md`, `README.md` và các tệp trong `references/`, `assets/`, `examples/`, `.claude/`. Chỉ tính tệp nằm trong kho. Tạo tệp mới thì không hỏi.
+- **Cho qua:** mọi việc còn lại, kể cả `git push --force-with-lease` (vẫn phải được người dùng đồng ý theo `.claude/rules/git-va-github.md`).
+- Nội dung heredoc và chữ nằm giữa câu không bị tính là lệnh, nên ghi tài liệu có nhắc tới `rm -rf` vẫn được.
+
+Yêu cầu: máy phải có **Python 3**. Trên Windows, hook chạy qua Git Bash; nếu `python3` chỉ là lối tắt của Microsoft Store thì hook không chạy được và mọi lệnh đều được cho qua. Cài Python từ python.org hoặc tắt lối tắt trong *Settings → Apps → Advanced app settings → App execution aliases*.
+
+Tự kiểm tra hook, không cần mở Claude:
+
+```bash
+echo '{"tool_name":"Bash","tool_input":{"command":"git reset --hard"}}' | python .claude/hooks/chan-lenh-nguy-hiem.py
+```
+
+Kết quả đúng là một dòng JSON có `"deny"`. Kết quả kiểm tra đầy đủ (51 ca) nằm trong `2026-09-23-bao-cao-kiem-tra-hook-v2.md`.
+
+Giới hạn đã biết: hook dò lệnh bằng mẫu chữ, nên lệnh nằm trong `bash -c "..."` có thể lọt qua; hook không theo được `cd` giữa chừng trong một chuỗi lệnh.
