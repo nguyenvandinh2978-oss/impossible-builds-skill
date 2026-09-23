@@ -102,7 +102,7 @@ Năm lớp giữ cho Claude và các tác tử AI khác làm việc an toàn, đ
 - **Cho qua:** mọi việc còn lại, kể cả `git push --force-with-lease` (vẫn phải được người dùng đồng ý theo `.claude/rules/git-va-github.md`).
 - Nội dung heredoc và chữ nằm giữa câu không bị tính là lệnh, nên ghi tài liệu có nhắc tới `rm -rf` vẫn được.
 
-Yêu cầu: máy phải có **Python 3**. Trên Windows, hook chạy qua Git Bash; nếu `python3` chỉ là lối tắt của Microsoft Store thì hook không chạy được và mọi lệnh đều được cho qua. Cài Python từ python.org hoặc tắt lối tắt trong *Settings → Apps → Advanced app settings → App execution aliases*.
+Yêu cầu: máy phải có **Python 3**. Hook thử lần lượt `python3`, `python`, `py` và dùng lệnh đầu tiên chạy được thật, nên lối tắt giả `python3` của Microsoft Store trên Windows được bỏ qua. Nếu không tìm thấy Python 3 nào, Claude Code hiện dòng báo lỗi "khong tim thay Python 3" và **mọi lệnh đều được cho qua**; khi đó cài Python từ python.org.
 
 Tự kiểm tra hook, không cần mở Claude:
 
