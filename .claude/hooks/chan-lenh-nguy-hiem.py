@@ -62,11 +62,39 @@ def bo_heredoc(lenh):
     return "\n".join(ket_qua)
 
 
+# Thư mục lệnh đang chạy, lấy từ trường "cwd" Claude Code gửi kèm.
+THU_MUC_LAM_VIEC = os.getcwd()
+
+
+def chuan_hoa(duong_dan, goc_tuong_doi):
+    """Đưa về đường dẫn tuyệt đối dạng a/b/c, giữ nguyên chữ hoa thường."""
+    p = os.path.expanduser(duong_dan).replace("\\", "/")
+    # Git Bash viết /c/Users/..., Claude Code viết C:\Users\...
+    m = re.match(r"^/([a-zA-Z])(/|$)", p)
+    if m and re.match(r"^[a-zA-Z]:", goc_tuong_doi):
+        p = m.group(1) + ":/" + p[3:]
+    if not (p.startswith("/") or re.match(r"^[a-zA-Z]:/", p)):
+        p = goc_tuong_doi.replace("\\", "/").rstrip("/") + "/" + p
+    return os.path.normpath(p).replace("\\", "/")
+
+
+def duong_dan_trong_kho(duong_dan):
+    """Trả về đường dẫn tương đối so với gốc kho, hoặc None nếu tệp nằm ngoài kho."""
+    goc = os.environ.get("CLAUDE_PROJECT_DIR") or THU_MUC_LAM_VIEC
+    goc = chuan_hoa(goc, THU_MUC_LAM_VIEC).rstrip("/") + "/"
+    p = chuan_hoa(duong_dan, THU_MUC_LAM_VIEC)
+    # Ổ đĩa Windows không phân biệt hoa thường: C:\Users và c:\users là một.
+    khong_phan_biet = re.match(r"^[a-zA-Z]:", goc) is not None
+    if (p.lower().startswith(goc.lower()) if khong_phan_biet else p.startswith(goc)):
+        return p[len(goc):]
+    return None
+
+
 def la_tep_quan_trong(duong_dan):
-    p = duong_dan.replace("\\", "/")
-    goc = os.environ.get("CLAUDE_PROJECT_DIR", "").replace("\\", "/").rstrip("/")
-    if goc and p.startswith(goc + "/"):
-        p = p[len(goc) + 1:]
+    # Chỉ bảo vệ tệp trong kho; bản sao cùng tên ở nơi khác không tính.
+    p = duong_dan_trong_kho(duong_dan)
+    if p is None:
+        return False
     if os.path.basename(p) in TEN_TEP_QUAN_TRONG:
         return True
     if any(p == t or p.endswith("/" + t) for t in TEP_CAU_HINH):
@@ -150,6 +178,8 @@ def main():
         du_lieu = json.load(sys.stdin)
     except (json.JSONDecodeError, ValueError):
         return
+    global THU_MUC_LAM_VIEC
+    THU_MUC_LAM_VIEC = du_lieu.get("cwd") or THU_MUC_LAM_VIEC
     ten_cong_cu = du_lieu.get("tool_name", "")
     if ten_cong_cu == "Bash":
         xet_bash((du_lieu.get("tool_input") or {}).get("command", ""))

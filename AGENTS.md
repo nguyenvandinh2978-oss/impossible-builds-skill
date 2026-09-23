@@ -24,6 +24,6 @@ Tệp này dành cho mọi tác tử AI làm việc trong kho: agent phụ do Cl
 Kho có hook `.claude/hooks/chan-lenh-nguy-hiem.py`, chạy trước mọi lệnh Bash và mọi lần ghi tệp:
 
 - **Chặn hẳn:** `rm -rf`, `git push --force`, push thẳng lên `main`/`master`, `git reset --hard`, `git clean -f`, `git branch -D`, `find -delete`, tải mã từ Internet rồi chạy luôn, và một số lệnh khác.
-- **Hỏi người dùng:** xóa, đổi tên hoặc ghi đè các tệp cấu trúc cố định ở mục 2.
+- **Hỏi người dùng:** xóa, đổi tên hoặc ghi đè các tệp cấu trúc cố định ở mục 2. Chỉ tính tệp nằm trong kho; bản sao cùng tên ở nơi khác không bị hỏi.
 
 Bị hook chặn thì đừng tìm cách lách. Hãy báo lại lý do chặn cho phiên chính.
