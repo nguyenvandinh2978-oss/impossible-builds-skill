@@ -109,13 +109,15 @@ def la_tep_quan_trong(duong_dan):
 
 
 def tra_ve(quyet_dinh, ly_do):
+    # ensure_ascii=True: tiếng Việt được viết thành \uXXXX. Trên Windows, stdout nối ống
+    # dùng bảng mã cp1252; in thẳng tiếng Việt sẽ lỗi, hook sập và lệnh được cho qua.
     print(json.dumps({
         "hookSpecificOutput": {
             "hookEventName": "PreToolUse",
             "permissionDecision": quyet_dinh,
             "permissionDecisionReason": ly_do,
         }
-    }, ensure_ascii=False))
+    }, ensure_ascii=True))
     sys.exit(0)
 
 
@@ -175,7 +177,8 @@ def xet_ghi_tep(du_lieu):
 
 def main():
     try:
-        du_lieu = json.load(sys.stdin)
+        # Đọc byte rồi giải mã UTF-8, không phụ thuộc bảng mã mặc định của Windows.
+        du_lieu = json.loads(sys.stdin.buffer.read().decode("utf-8", errors="replace"))
     except (json.JSONDecodeError, ValueError):
         return
     global THU_MUC_LAM_VIEC
