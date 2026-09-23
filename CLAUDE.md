@@ -33,6 +33,13 @@ Kênh phục vụ: Impossible Builds TV, khán giả Mỹ.
 10. Trước khi tạo Pull Request hoặc thực hiện hành động bên ngoài, phải xin xác nhận.
 11. Khi người yêu cầu nói "Chạy Báo cáo Tuần" và gửi dữ liệu thô, chạy skill `bao-cao-tuan`: dọn thành bảng 6 cột (Ngày, Sản phẩm, Số lượng, Đơn giá, Doanh thu, Ghi chú) và rà đủ năm loại lỗi theo `.claude/skills/bao-cao-tuan/references/luat-ra-soat-loi.md`. Không tự điền, không suy đoán số liệu.
 
+## Bộ khung harness
+
+- `AGENTS.md`: luật cho agent phụ và các công cụ AI khác.
+- `.claude/settings.json` và `.claude/hooks/chan-lenh-nguy-hiem.py`: hook chặn cứng lệnh nguy hiểm, hỏi lại trước khi xóa, đổi tên hoặc ghi đè tệp quan trọng.
+- `.claude/rules/`: luật theo chủ đề (đặt tên tệp, prompt video, git và GitHub).
+- Skill: `impossible-builds-video-director/`, `.claude/skills/bao-cao-tuan/`.
+
 ## Quy tắc đặt tên tệp
 
 - Dùng chữ thường, không dấu, phân cách bằng dấu gạch ngang.
