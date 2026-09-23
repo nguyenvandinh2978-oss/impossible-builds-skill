@@ -91,13 +91,14 @@ Năm lớp giữ cho Claude và các tác tử AI khác làm việc an toàn, đ
 |---|---|---|
 | **CLAUDE.md** | `CLAUDE.md` | Luật làm việc chung, tự nạp mỗi phiên: cấu trúc trả lời 6 mục, quy tắc đặt tên tệp, xin xác nhận trước hành động bên ngoài. |
 | **AGENTS.md** | `AGENTS.md` | Luật cho agent phụ và các công cụ AI khác (Codex, Cursor, Copilot...). Trỏ về `CLAUDE.md` và `SKILL.md`, chỉ thêm luật riêng cho tác tử. |
-| **Hook** | `.claude/settings.json`, `.claude/hooks/chan-lenh-nguy-hiem.py` | Chặn cứng bằng mã, chạy trước mọi lệnh Bash và mọi lần ghi tệp. |
+| **Hook** | `.claude/settings.json`, `.claude/hooks/chan-lenh-nguy-hiem.py` | Chặn cứng bằng mã, chạy trước mọi lệnh Bash hoặc PowerShell và mọi lần ghi tệp. |
 | **Rules** | `.claude/rules/` | Luật theo chủ đề, nạp khi cần: `dat-ten-tep.md`, `prompt-video.md` (chỉ nạp khi làm với skill video, kịch bản, ngân hàng tiêu đề), `git-va-github.md`. |
 | **Skill** | `impossible-builds-video-director/`, `.claude/skills/bao-cao-tuan/` | Quy trình chuyên môn đóng gói, gọi bằng một câu lệnh. |
 
 ### Hook chặn lệnh nguy hiểm
 
 - **Chặn hẳn:** `rm -rf`, `git push --force`, push thẳng lên `main`/`master`, `git reset --hard`, `git clean -f`, `git branch -D`, `git checkout -- .`, `find -delete`, tải mã từ Internet rồi chạy luôn (`curl ... | sh`), `mkfs`, `dd`, `shred`, `chmod -R 777`.
+- **Chặn hẳn trên Windows:** Claude Code trên Windows chạy lệnh bằng công cụ PowerShell thay cho Bash. Hook áp dụng các luật git ở trên và chặn thêm `Remove-Item -Recurse` (cả các tên tắt `rm`, `ri`, `del`, `rd`...), `rd /s`, `del /s`, `Format-Volume`, `Clear-Disk`, tải mã rồi chạy (`iwr ... | iex`).
 - **Hỏi lại:** xóa, đổi tên hoặc ghi đè `CLAUDE.md`, `AGENTS.md`, `SKILL.md`, `README.md` và các tệp trong `references/`, `assets/`, `examples/`, `.claude/`. Chỉ tính tệp nằm trong kho. Tạo tệp mới thì không hỏi.
 - **Cho qua:** mọi việc còn lại, kể cả `git push --force-with-lease` (vẫn phải được người dùng đồng ý theo `.claude/rules/git-va-github.md`).
 - Nội dung heredoc và chữ nằm giữa câu không bị tính là lệnh, nên ghi tài liệu có nhắc tới `rm -rf` vẫn được.
