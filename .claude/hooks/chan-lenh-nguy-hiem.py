@@ -42,9 +42,30 @@ LENH_CAM = [
     (DAU + r"chmod\s+-R\s+777\b", "mở toàn quyền cho cả cây thư mục"),
 ]
 
+# Lệnh chặn cứng riêng cho PowerShell (Claude Code trên Windows chạy lệnh bằng công cụ
+# PowerShell). So khớp không phân biệt hoa thường; các mẫu git ở trên vẫn áp dụng.
+XOA_PS = r"(?:remove-item|ri|rm|del|erase|rd|rmdir)"
+LENH_CAM_PS = [
+    (DAU + XOA_PS + r"\b[^;&|\n]*\s-r(?:e(?:c(?:u(?:r(?:s(?:e)?)?)?)?)?)?\b",
+     "Remove-Item -Recurse xóa cả thư mục không thể hoàn tác"),
+    (DAU + r"(?:rd|rmdir|del|erase)\b[^;&|\n]*\s/s\b", "rd /s hoặc del /s xóa hàng loạt"),
+    (DAU + r"(?:format-volume|clear-disk|initialize-disk|remove-partition)\b", "lệnh xóa hoặc định dạng ổ đĩa"),
+    (r"(?:invoke-webrequest|invoke-restmethod|iwr|irm|curl|wget)\b[^;\n]*\|\s*(?:invoke-expression|iex)\b",
+     "tải và chạy mã từ Internet không qua kiểm tra"),
+    (r"(?:invoke-expression|iex)\b[^;\n]*(?:downloadstring|invoke-webrequest|invoke-restmethod|iwr|irm)\b",
+     "tải và chạy mã từ Internet không qua kiểm tra"),
+]
+
 # Lệnh có thể xóa, đổi tên hoặc ghi đè tệp được nêu trong tham số.
 LENH_DOI_TEP = {"rm", "mv", "unlink", "truncate", "shred", "cp"}
 LENH_GIT_DOI_TEP = {"rm", "mv"}
+# Tương đương trong PowerShell (viết thường; PowerShell không phân biệt hoa thường).
+LENH_DOI_TEP_PS = {
+    "remove-item", "ri", "rm", "del", "erase", "rd", "rmdir",
+    "move-item", "mi", "mv", "move", "rename-item", "rni", "ren",
+    "set-content", "sc", "clear-content", "clc", "out-file",
+}
+LENH_CHEP_PS = {"copy-item", "cpi", "cp", "copy"}
 
 
 def bo_heredoc(lenh):
@@ -162,6 +183,55 @@ def xet_bash(lenh):
                    + " (quy tắc 4 CLAUDE.md). Cần người dùng xác nhận.")
 
 
+def bo_here_string(lenh):
+    """Bỏ phần thân here-string @'...'@ và @"..."@ của PowerShell: đó là nội dung, không phải lệnh."""
+    return re.sub(r"@(['\"])\r?\n.*?\r?\n\1@", "@''@", lenh, flags=re.S)
+
+
+def tep_bi_dong_toi_ps(lenh):
+    """Liệt kê các tệp mà lệnh PowerShell có thể xóa, đổi tên hoặc ghi đè."""
+    muc_tieu = []
+    for m in re.finditer(r"(?<![<>&])[0-9*]?>>?\s*([^\s;&|<>]+)", lenh):
+        if not m.group(1).startswith("&") and m.group(1).lower() != "$null":
+            muc_tieu.append(m.group(1))
+    for doan in re.split(r"&&|\|\||[;|\n]", lenh):
+        # PowerShell không dùng \ làm ký tự thoát, nên tách kiểu không-POSIX rồi bỏ dấu nháy.
+        try:
+            tu = [t.strip("'\"") for t in shlex.split(doan, posix=False)]
+        except ValueError:
+            tu = doan.split()
+        tu = [t for t in tu if t]
+        if not tu:
+            continue
+        ten = os.path.basename(tu[0].replace("\\", "/")).lower()
+        if ten.endswith(".exe"):
+            ten = ten[:-4]
+        if ten in LENH_DOI_TEP_PS:
+            muc_tieu += tu[1:]
+        elif ten in LENH_CHEP_PS:
+            muc_tieu += tu[-1:]  # chỉ tệp đích bị ghi đè
+        elif ten == "new-item" and any(t.lower().startswith("-fo") for t in tu[1:]):
+            muc_tieu += tu[1:]  # New-Item -Force ghi đè tệp đã có
+        elif ten == "git" and len(tu) > 1 and tu[1] in LENH_GIT_DOI_TEP:
+            muc_tieu += tu[2:]
+    # Bỏ tham số -Path/-Force... và công tắc kiểu cmd như /s, /q.
+    return [t for t in muc_tieu if t and not t.startswith("-") and not re.match(r"^/[a-zA-Z?]$", t)]
+
+
+def xet_powershell(lenh):
+    lenh = bo_here_string(lenh)
+    for mau, ly_do in LENH_CAM:
+        if re.search(mau, lenh):
+            tra_ve("deny", "Hook chặn: " + ly_do + ". Nếu thật sự cần, hãy xin người dùng tự chạy lệnh.")
+    for mau, ly_do in LENH_CAM_PS:
+        if re.search(mau, lenh, flags=re.I):
+            tra_ve("deny", "Hook chặn: " + ly_do + ". Nếu thật sự cần, hãy xin người dùng tự chạy lệnh.")
+    for tep in tep_bi_dong_toi_ps(lenh):
+        if la_tep_quan_trong(tep):
+            tra_ve("ask", "Lệnh có thể xóa, đổi tên hoặc ghi đè tệp quan trọng: " + tep
+                   + " (quy tắc 4 CLAUDE.md). Cần người dùng xác nhận.")
+
+
 def xet_ghi_tep(du_lieu):
     ten_cong_cu = du_lieu.get("tool_name", "")
     dau_vao = du_lieu.get("tool_input", {}) or {}
@@ -184,8 +254,12 @@ def main():
     global THU_MUC_LAM_VIEC
     THU_MUC_LAM_VIEC = du_lieu.get("cwd") or THU_MUC_LAM_VIEC
     ten_cong_cu = du_lieu.get("tool_name", "")
+    dau_vao = du_lieu.get("tool_input") or {}
     if ten_cong_cu == "Bash":
-        xet_bash((du_lieu.get("tool_input") or {}).get("command", ""))
+        xet_bash(dau_vao.get("command", ""))
+    elif ten_cong_cu == "PowerShell":
+        # Claude Code trên Windows chạy lệnh shell bằng công cụ này thay cho Bash.
+        xet_powershell(dau_vao.get("command") or dau_vao.get("script") or "")
     elif ten_cong_cu in ("Write", "Edit", "MultiEdit", "NotebookEdit"):
         xet_ghi_tep(du_lieu)
 
