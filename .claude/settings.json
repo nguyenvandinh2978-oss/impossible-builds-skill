@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$(command -v python3 || command -v python)\" \"$CLAUDE_PROJECT_DIR/.claude/hooks/chan-lenh-nguy-hiem.py\"",
+            "command": "for p in python3 python py; do if \"$p\" -c 'import sys; sys.exit(sys.version_info[0] != 3)' </dev/null >/dev/null 2>&1; then exec \"$p\" \"$CLAUDE_PROJECT_DIR/.claude/hooks/chan-lenh-nguy-hiem.py\"; fi; done; echo 'Hook chan-lenh-nguy-hiem: khong tim thay Python 3 chay duoc (python3, python, py).' >&2; exit 1",
             "timeout": 10
           }
         ]
