@@ -6,7 +6,8 @@ Kho: `nguyenvandinh2978-oss/impossible-builds-skill`
 
 ## Thay đổi so với v2
 
-- **Sửa lỗi:** v2 ghi chỉ cần `/plugin marketplace update` là nâng được plugin. Thực tế lệnh đó chỉ làm mới danh mục cửa hàng; phải chạy thêm `/plugin update` và khởi động lại phiên.
+- **Sửa lỗi:** v2 ghi chỉ cần `/plugin marketplace update` là nâng được plugin. Thực tế lệnh đó chỉ làm mới danh mục cửa hàng; phải chạy thêm `/plugin update` rồi nạp lại bằng `/reload-plugins`.
+- `/reload-plugins` đã kiểm chứng trên máy thật: nạp được plugin mà không cần khởi động lại phiên.
 - Viết lại thành các bước tuần tự cho ba tình huống: cài mới, nâng cấp, gỡ hoặc tắt.
 - Thêm bảng lỗi hay gặp.
 
@@ -14,8 +15,8 @@ Kho: `nguyenvandinh2978-oss/impossible-builds-skill`
 
 | Tình huống | Lệnh |
 |---|---|
-| Cài mới | `/plugin marketplace add nguyenvandinh2978-oss/impossible-builds-skill` → `/plugin install k9-boss@k9-boss-market` → khởi động lại |
-| Nâng cấp | `/plugin marketplace update k9-boss-market` → `/plugin update k9-boss@k9-boss-market` → khởi động lại |
+| Cài mới | `/plugin marketplace add nguyenvandinh2978-oss/impossible-builds-skill` → `/plugin install k9-boss@k9-boss-market` → `/reload-plugins` |
+| Nâng cấp | `/plugin marketplace update k9-boss-market` → `/plugin update k9-boss@k9-boss-market` → `/reload-plugins` |
 | Kiểm tra | `/plugin list` |
 | Gọi skill | `/k9-boss:bao-cao-tuan`, `/k9-boss:impossible-builds-video-director` |
 
@@ -69,15 +70,17 @@ Nếu được hỏi phạm vi cài (scope):
 
 Kết quả đúng: `Successfully installed plugin: k9-boss@k9-boss-market`.
 
-### Bước 4 — Khởi động lại phiên
-
-Gõ `/exit` (hoặc Ctrl+C hai lần), rồi mở lại:
+### Bước 4 — Nạp plugin vào phiên
 
 ```
-claude
+/reload-plugins
 ```
 
-(Có thể thử `/reload-plugins` thay cho khởi động lại — chưa kiểm chứng.)
+Kết quả đúng: `Reloaded: 1 plugin · 2 skills · ... · 1 hook ...`
+
+Nếu vẫn báo `0 plugins`: gõ `/exit`, rồi chạy lại `claude`.
+
+Lưu ý: chạy `/reload-plugins` **trước** khi cài sẽ báo `0 plugins` — bình thường, vì chưa có gì để nạp.
 
 ### Bước 5 — Kiểm tra
 
@@ -125,9 +128,13 @@ Kết quả đúng: `Plugin "k9-boss" updated from 0.1.0 to 0.2.0 ... Restart to
 
 Nếu báo đã là bản mới nhất: kiểm tra lại Bước 1, hoặc PR chưa được merge.
 
-### Bước 3 — Khởi động lại phiên
+### Bước 3 — Nạp bản mới vào phiên
 
-`/exit`, rồi `claude`. Bắt buộc: chưa khởi động lại thì phiên vẫn chạy bản cũ.
+```
+/reload-plugins
+```
+
+Bắt buộc: chưa nạp lại thì phiên vẫn chạy bản cũ. Nếu không ăn, `/exit` rồi `claude`.
 
 ### Bước 4 — Kiểm tra
 
@@ -148,7 +155,7 @@ Nếu báo đã là bản mới nhất: kiểm tra lại Bước 1, hoặc PR ch
 | Gỡ hẳn | `/plugin uninstall k9-boss@k9-boss-market` |
 | Bỏ cửa hàng | `/plugin marketplace remove k9-boss-market` |
 
-Sau mỗi thao tác: khởi động lại phiên.
+Sau mỗi thao tác: `/reload-plugins` (hoặc `/exit` rồi `claude`).
 
 ---
 
@@ -172,7 +179,7 @@ claude plugin details k9-boss
 | Hiện tượng | Nguyên nhân thường gặp | Cách xử lý |
 |---|---|---|
 | `marketplace add` báo không tìm thấy kho / 404 | Kho riêng tư, máy chưa đăng nhập GitHub | Làm Bước 0 mục A |
-| Gõ `/k9-boss:...` không ra | Chưa khởi động lại phiên sau khi cài | `/exit` rồi `claude` |
+| Gõ `/k9-boss:...` không ra | Chưa nạp lại plugin sau khi cài | `/reload-plugins`; không được thì `/exit` rồi `claude` |
 | `/plugin update` báo đã mới nhất dù kho có bản mới | Chưa `marketplace update`, hoặc PR chưa merge vào `main` | Làm Bước 1 mục B; kiểm tra PR |
 | Hook báo không tìm thấy Python 3 | Máy chưa cài Python 3 | Cài Python 3 (Windows: python.org, tích "Add to PATH") |
 | Hook hỏi lại hai lần cho một lệnh | Bật plugin ngay trong kho `impossible-builds-skill` (kho đã có hook riêng) | Không cần bật plugin trong kho này |
@@ -187,8 +194,15 @@ claude plugin details k9-boss
 | Nâng cấp 0.1.0 → 0.2.0: `marketplace update` + `update` | Đạt; báo "updated from 0.1.0 to 0.2.0 … Restart to apply changes" |
 | Chỉ chạy `marketplace update` | Chưa nâng plugin — lý do sửa hướng dẫn v2 |
 
+| Kiểm tra trên máy thật của người dùng (Windows, PowerShell) | Kết quả |
+|---|---|
+| `/plugin marketplace add nguyenvandinh2978-oss/impossible-builds-skill` | `Successfully added marketplace: k9-boss-market` |
+| Màn hình cài đặt | Hiện đúng "AI Code - Boss Mr Dinh", Version 0.2.0, By: K9; chọn user scope |
+| `/plugin install k9-boss@k9-boss-market` | `Installed AI Code - Boss Mr Dinh. Plugin is now active.` |
+| `/reload-plugins` sau khi cài | `Reloaded: 1 plugin · 2 skills · 6 agents · 1 hook` — **thay được khởi động lại** |
+| `/plugin list` | `k9-boss@k9-boss-market (v0.2.0, user) enabled` |
+
 ## G. Chưa kiểm chứng
 
-- `/reload-plugins` có thay được khởi động lại hay không.
 - `autoUpdate: true` (khai báo trong `.claude/settings.json`) có tự nâng plugin mà không cần Bước 1–2 mục B hay không.
 - Gọi skill và hook chặn lệnh trong một phiên trò chuyện thật.
