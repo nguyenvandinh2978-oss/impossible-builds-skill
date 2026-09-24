@@ -7,8 +7,8 @@
       "name": "k9-boss",
       "source": "./plugins/k9-boss",
       "displayName": "AI Code - Boss Mr Dinh",
-      "description": "Bo skill tong K9. Ban thu: bao-cao-tuan.",
-      "version": "0.1.0"
+      "description": "Bo skill tong K9. Gom: bao-cao-tuan, impossible-builds-video-director, hook chan lenh nguy hiem.",
+      "version": "0.2.0"
     }
   ]
 }
