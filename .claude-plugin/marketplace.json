@@ -1,0 +1,14 @@
+{
+  "name": "k9-boss-market",
+  "owner": { "name": "K9" },
+  "description": "Kho skill tong: gom cac skill dung chung cho moi du an",
+  "plugins": [
+    {
+      "name": "k9-boss",
+      "source": "./plugins/k9-boss",
+      "displayName": "AI Code - Boss Mr Dinh",
+      "description": "Bo skill tong K9. Ban thu: bao-cao-tuan.",
+      "version": "0.1.0"
+    }
+  ]
+}
